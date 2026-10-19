@@ -1,0 +1,15 @@
+
+workflows:
+  default-workflow:
+    name: Tahseel Default Workflow
+    max_build_duration: 120
+    environment:
+      node: latest
+    scripts:
+      - name: Install dependencies
+        script: |
+          npm install
+    artifacts:
+      - build/**
+
+
