@@ -2,17 +2,20 @@
 workflows:
   android-workflow:
     name: Tahseel Android Build
-    max_build_duration: 30
+    max_build_duration: 60
+
     environment:
-      android_sdk: latest
-      node: latest
+      flutter: stable
+
     scripts:
+      - name: Check Flutter
+        script: flutter --version
+
       - name: Install dependencies
-        script: |
-          npm install
-      - name: Build web assets
-        script: |
-          echo "Building offline app..."
+        script: flutter pub get
+
+      - name: Build APK
+        script: flutter build apk --release
+
     artifacts:
-      - build/**/*.apk
-      - ./*.html
+      - build/app/outputs/flutter-apk/*.apk
